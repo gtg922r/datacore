@@ -47,6 +47,7 @@ The primary role of an LLM in this repository is to:
 - **Utility Functions**: `src/utils/` - General utilities like data manipulation, JavaScript execution
 - **Expression System**: `src/expression/` - For working with datacore expressions and literals
 - **Data Structures**: `src/api/data-array.ts` - Enhanced array operations for data processing
+- **AI Workspace**: `vault/` - Create new components, test datacoretsx blocks, and prototype features here
 
 ### For Query Language
 - **Query Parser**: `src/expression/parser.ts` - Query language grammar and parsing
@@ -116,6 +117,7 @@ The plugin registers these markdown code block processors:
 - `src/api/` - Public APIs and UI components  
 - `src/utils/` - Shared utilities
 - `docs/` - Docusaurus documentation site
+- `vault/` - **AI Assistant workspace** for creating new components, testing datacoretsx blocks, and experimental code
 
 ## Datacoretsx Block Guide
 
@@ -251,3 +253,20 @@ const { helper } = await dc.require(dc.headerLink("utils.md", "Helper Functions"
 - **Claude**: Automatic context loading and management  
 - **Codex**: Static context loaded at task start
 - **Cursor**: Rule-based context with file scoping
+
+## AI Assistant Workspace
+
+### vault/ Directory
+The `vault/` directory is the designated workspace for AI assistants to:
+
+- **Create new components** - Prototype reusable UI components and utilities
+- **Test datacoretsx blocks** - Create `.md` files with datacoretsx codeblocks for testing
+- **Experiment with features** - Try new patterns and approaches before integrating into main codebase
+- **Component library** - Build components that can be imported via `dc.require()`
+
+### Best Practices for vault/
+- Create descriptive filenames (e.g., `advanced-table-component.md`, `query-examples.md`)
+- Include both implementation and usage examples in test files
+- Use proper TypeScript types and JSDoc comments
+- Test components thoroughly before suggesting integration into `src/`
+- Organize related files in subdirectories when needed
