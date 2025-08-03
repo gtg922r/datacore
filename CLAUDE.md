@@ -1,14 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides Claude Code specific guidance. For comprehensive context shared across all AI agents, see **AGENTS.md**.
 
-## Primary LLM Role
+## Multi-Agent Context System
 
-The primary role of an LLM in this repository is to:
+This repository uses a multi-agent context file system:
+- **AGENTS.md** - Master context file with comprehensive guidance for all AI agents
+- **CLAUDE.md** - This file (Claude Code specific additions)
+- **GEMINI.md** - Symbolic link to AGENTS.md
+- **`.cursorrules`** - Symbolic link to AGENTS.md  
+- **`.cursor/rules/project-guide.mdc`** - Symbolic link to AGENTS.md
 
-1. **Help users write datacoretsx blocks** - Assist with creating interactive React/TypeScript components for Obsidian
-2. **Write new components, hooks, and utilities** - Create reusable code that can be imported via `dc.require()`
-3. **Help users write datacore queries** - Assist with the query language for filtering vault data
+**→ Read AGENTS.md for the complete development guide including datacoretsx blocks, queries, and architecture.**
+
+## Claude Code Specific Notes
+
+The primary role defined in AGENTS.md applies to Claude Code:
+1. **Help users write datacoretsx blocks** 
+2. **Write new components, hooks, and utilities**
+3. **Help users write datacore queries**
 
 ## Key Codebase Locations for LLM Tasks
 

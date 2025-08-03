@@ -13,7 +13,7 @@ This file provides guidance to AI coding agents when working with code in this r
 This repository uses symbolic links to provide the same context to all agents while maintaining a single source of truth. This approach works across git clones and different development environments:
 
 - `AGENTS.md` - Master file (this file)
-- `CLAUDE.md` - Dedicated Claude Code context (separate file for Claude-specific guidance)
+- `CLAUDE.md` - Claude Code context (references AGENTS.md and adds Claude-specific notes)
 - `GEMINI.md` - Symbolic link to AGENTS.md (Gemini CLI reads this)
 - `.cursorrules` - Symbolic link to AGENTS.md (legacy Cursor format)
 - `.cursor/rules/project-guide.mdc` - Symbolic link to AGENTS.md (modern Cursor format)
