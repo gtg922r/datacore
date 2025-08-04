@@ -184,7 +184,7 @@ export function markdownSourceImport(
     // In the second list pass, actually construct the list heirarchy.
     for (const item of listItems.values()) {
         if (item.parentLine < 0) {
-            const listBlock = blocks.get(-item.parentLine);
+            const listBlock = blocks.getPairOrNextHigher(-item.parentLine)![1];
             if (!listBlock || !(listBlock.type === "list")) continue;
 
             (listBlock as ListBlockData).items.push(item);
@@ -221,7 +221,7 @@ export function markdownSourceImport(
     ///////////
 
     for (let linkdef of metadata.links ?? []) {
-        const link = Link.infer(linkdef.link);
+        const link = Link.infer(linkdef.link, false, linkdef.displayText);
         const line = linkdef.position.start.line;
         markdownMetadata.link(link);
 
