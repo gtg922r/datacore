@@ -1,0 +1,66 @@
+/* FuzzySuggestModal styling for datacore integration */
+
+.dc-fuzzy-modal {
+    /* Base modal styling - inherits from Obsidian's defaults */
+}
+
+.dc-fuzzy-modal .suggestion-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+}
+
+.dc-fuzzy-modal .suggestion-title {
+    font-weight: 500;
+    color: var(--text-normal);
+}
+
+.dc-fuzzy-modal .suggestion-subtitle {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+.dc-fuzzy-modal .suggestion-emoji {
+    font-size: 1.1em;
+    margin-right: 4px;
+}
+
+/* Loading state */
+.dc-fuzzy-modal .suggestion-item.mod-loading {
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Custom theme variations */
+.theme-selector-modal .suggestion-item {
+    border-radius: 4px;
+    margin: 2px 4px;
+}
+
+.theme-minimal {
+    background-color: var(--background-modifier-form-field);
+}
+
+.theme-dark {
+    background-color: var(--background-secondary-alt);
+    color: var(--text-on-accent);
+}
+
+.theme-light {
+    background-color: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+}
+
+.theme-colorful {
+    background: linear-gradient(135deg, 
+        var(--color-accent) 0%, 
+        var(--interactive-accent) 100%);
+    color: var(--text-on-accent);
+}
+
+.theme-mono {
+    font-family: var(--font-monospace);
+    background-color: var(--code-background);
+}

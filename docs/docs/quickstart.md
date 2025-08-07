@@ -55,6 +55,44 @@ return function View() {
 ```
 ~~~
 
+## Interactive Page Selector
+
+Want something more interactive? Here's a fuzzy search interface for selecting pages in your vault:
+
+~~~
+```datacoretsx
+return function PageSelector() {
+    const [selectedPage, setSelectedPage] = dc.useState(null);
+    
+    const openPageSearch = dc.useQueryFuzzySuggest({
+        query: "@page",
+        itemText: (page) => page.$name,
+        onSelect: (page) => setSelectedPage(page),
+        placeholder: "Search for a page...",
+        limit: 10
+    });
+    
+    return (
+        <dc.Stack>
+            <dc.Button onClick={openPageSearch} intent="info">
+                Select a Page
+            </dc.Button>
+            
+            {selectedPage && (
+                <dc.Card>
+                    <h4>{selectedPage.$name}</h4>
+                    <p>Path: {selectedPage.$path}</p>
+                    <dc.Link path={selectedPage.$path}>Open Page →</dc.Link>
+                </dc.Card>
+            )}
+        </dc.Stack>
+    );
+}
+```
+~~~
+
+This example demonstrates the new **FuzzySuggest** integration that lets you create searchable interfaces for your vault data!
+
 For more of an explanation of how each of the pieces here is working, check out:
 
 - [Queries](data/query.md) for writing queries that fetch data from your vault.

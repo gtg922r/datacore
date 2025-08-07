@@ -28,6 +28,7 @@ import { ScriptCache } from "./script-cache";
 import { Expression } from "expression/expression";
 import { Card } from "./ui/views/cards";
 import { ListView } from "./ui/views/list";
+import { useFuzzySuggest, useQueryFuzzySuggest, FuzzySuggestModal } from "./ui/modals/fuzzy-suggest";
 
 /**
  * Local API provided to specific codeblocks when they are executing.
@@ -402,4 +403,15 @@ export class DatacoreLocalApi {
     public Slider = Slider;
     public Switch = Switch;
     public VanillaSelect = VanillaSelect;
+
+    //////////////////////
+    // FuzzySuggest API //
+    //////////////////////
+
+    /** Hook to create a fuzzy suggest modal opener for static or dynamic item lists. */
+    public useFuzzySuggest = useFuzzySuggest;
+    /** Hook to create a fuzzy suggest modal opener specifically for datacore queries. */
+    public useQueryFuzzySuggest = useQueryFuzzySuggest;
+    /** Declarative FuzzySuggestModal component for controlled modal state. */
+    public FuzzySuggestModal = FuzzySuggestModal;
 }

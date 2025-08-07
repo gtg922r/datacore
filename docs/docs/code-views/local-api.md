@@ -367,9 +367,118 @@ dc.tryEvaluate("1 + 2") = { value: 3, successful: true }
 dc.tryEvaluate("fakefunction(3)") = { successful: false, error: "unrecognized function..." }
 ```
 
-## Type Coercion / Parsing
+## Interactive Features
 
-Parses
+Datacore provides several interactive features that allow users to build dynamic, searchable interfaces.
+
+### FuzzySuggestModal Integration
+
+Datacore integrates with Obsidian's FuzzySuggestModal to provide powerful search interfaces in your views. There are three main ways to use this feature:
+
+#### `dc.useFuzzySuggest(config)`
+
+Creates a function that opens a fuzzy search modal when called. Best for simple interactions triggered by buttons.
+
+```jsx
+return function View() {
+    const [selected, setSelected] = dc.useState("");
+    
+    const openSearch = dc.useFuzzySuggest({
+        items: ["Red", "Green", "Blue", "Yellow"],
+        itemText: (color) => color,
+        onSelect: (color) => setSelected(color),
+        placeholder: "Choose a color..."
+    });
+    
+    return (
+        <dc.Stack>
+            <dc.Button onClick={openSearch}>Select Color</dc.Button>
+            {selected && <p>You selected: {selected}</p>}
+        </dc.Stack>
+    );
+}
+```
+
+#### `dc.useQueryFuzzySuggest(config)`
+
+Specialized hook for datacore queries with live updates. The query results automatically stay in sync with vault changes.
+
+```jsx
+return function View() {
+    const [selectedPage, setSelectedPage] = dc.useState(null);
+    
+    const openPageSearch = dc.useQueryFuzzySuggest({
+        query: "@page and #important",
+        itemText: (page) => page.$name,
+        onSelect: (page) => setSelectedPage(page),
+        placeholder: "Search pages..."
+    });
+    
+    return (
+        <dc.Stack>
+            <dc.Button onClick={openPageSearch}>Select Page</dc.Button>
+            {selectedPage && (
+                <dc.Card>
+                    <h4>{selectedPage.$name}</h4>
+                    <dc.Link path={selectedPage.$path}>Open →</dc.Link>
+                </dc.Card>
+            )}
+        </dc.Stack>
+    );
+}
+```
+
+#### `<dc.FuzzySuggestModal />`
+
+A controlled component for more complex modal management scenarios.
+
+```jsx
+return function View() {
+    const [isOpen, setIsOpen] = dc.useState(false);
+    const [selected, setSelected] = dc.useState(null);
+    
+    return (
+        <dc.Stack>
+            <dc.Button onClick={() => setIsOpen(true)}>
+                Open Search
+            </dc.Button>
+            
+            <dc.FuzzySuggestModal
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                app={dc.api.app}
+                datacore={dc.api.core}
+                items={["Option 1", "Option 2", "Option 3"]}
+                itemText={(item) => item}
+                onSelect={(item) => {
+                    setSelected(item);
+                    setIsOpen(false);
+                }}
+                placeholder="Search options..."
+            />
+            
+            {selected && <p>Selected: {selected}</p>}
+        </dc.Stack>
+    );
+}
+```
+
+#### Configuration Options
+
+All FuzzySuggest functions accept a configuration object with these properties:
+
+- **`items`**: Array, function, or promise returning items to search
+- **`query`**: Datacore query string (alternative to items, for `useQueryFuzzySuggest`)
+- **`itemText`**: Function to extract searchable text from items
+- **`onSelect`**: Callback when an item is selected
+- **`renderSuggestion`**: Optional custom rendering function for suggestions
+- **`placeholder`**: Input placeholder text
+- **`emptyStateText`**: Text shown when no items match
+- **`limit`**: Maximum number of suggestions to show
+- **`modalClass`**: Custom CSS class for the modal
+- **`containerClass`**: Custom CSS class for suggestion container
+
+## Type Coercion / Parsing
 
 ### `dc.coerce.string()`
 
