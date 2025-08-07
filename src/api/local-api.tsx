@@ -28,6 +28,7 @@ import { ScriptCache } from "./script-cache";
 import { Expression } from "expression/expression";
 import { Card } from "./ui/views/cards";
 import { ListView } from "./ui/views/list";
+import { useFuzzyQuery, useFuzzySuggest } from "ui/fuzzy";
 
 /**
  * Local API provided to specific codeblocks when they are executing.
@@ -214,6 +215,10 @@ export class DatacoreLocalApi {
      * React's reference-equality-based caching.
      */
     public useInterning = useInterning;
+    /** Open an Obsidian FuzzySuggestModal from React using arrays, callbacks, or queries. */
+    public useFuzzySuggest = useFuzzySuggest;
+    /** Convenience: open a fuzzy modal with items from a datacore query. */
+    public useFuzzyQuery = useFuzzyQuery;
 
     /** Memoize the input automatically and process it using a DataArray; returns a vanilla array back. */
     public useArray<T, U>(

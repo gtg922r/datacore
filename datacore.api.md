@@ -486,6 +486,10 @@ export class DatacoreLocalApi {
     useFullQuery(query: string | IndexQuery, settings?: {
         debounce?: number;
     }): SearchResult<Indexable>;
+    // Warning: (ae-forgotten-export) The symbol "useFuzzyQuery" needs to be exported by the entry point index.d.ts
+    useFuzzyQuery: typeof useFuzzyQuery;
+    // Warning: (ae-forgotten-export) The symbol "useFuzzySuggest" needs to be exported by the entry point index.d.ts
+    useFuzzySuggest: typeof useFuzzySuggest;
     useIndexUpdates(settings?: {
         debounce?: number;
     }): number;
